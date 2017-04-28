@@ -24,7 +24,7 @@ class RollService
   def roll_die(sides, count)
     return_string = "You rolled #{count} d#{sides}s. Your results were "
     results = Array.new
-    for i in 0..count
+    for i in 1..count
         results << 1 + Random.rand(sides)
     end
     return_string += results.join(',') + ". "
