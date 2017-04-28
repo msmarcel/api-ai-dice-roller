@@ -24,7 +24,9 @@ class RollService
   def roll_die(sides, count)
     if count > 1
         return_string = "You rolled #{count.humanize} #{sides.humanize}-sided dice. Your results were "
-    else return_string = "You rolled a #{sides.humanize}-sided die. Your result was "
+    else 
+        return_string = "You rolled a #{sides.humanize}-sided die. Your result was "
+    end
     results = Array.new
     for i in 1..count
         results << 1 + Random.rand(sides)
