@@ -27,7 +27,7 @@ class RollService
     for i in 0..count
         results << 1 + Random.rand(sides)
     end
-    return_string += Array.join(',') + ". "
+    return_string += results.join(',') + ". "
     return return_string
   end
 end
