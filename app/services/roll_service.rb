@@ -11,7 +11,7 @@ class RollService
   end
   def roll_dice(sideses, counts)
     return_string = ""
-    if @sideses.respond_to?(:each)
+    if sideses.respond_to?(:each)
         roll_hash = sideses.zip(counts).to_h
         roll_hash.each do |sides, count|
             return_string += roll_die(sides.to_i,count.to_i)
