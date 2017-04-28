@@ -7,17 +7,7 @@ class RollService
     )
   end
   def execute(message)
-    api_ai_response = @client.text_request(message)
-    api_ai_response_message = api_ai_response[:result][:fulfillment][:speech]
-    
-    if action_incomplete
-        @response_message = api_ai_response_message
-        return
-    end
-    case action
-    when 'roll'
-        @response_message = roll_dice(api_ai_response[:result][:parameters][:sides],api_ai_response[:result][:parameters][:count])
-    end
+    @response_message = roll_dice(message[:parameters][:sides],message[:parameters][:count])
   end
   def roll_dice(sideses, counts)
     return_string = ""

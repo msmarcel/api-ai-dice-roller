@@ -6,8 +6,8 @@ skip_before_filter :verify_authenticity_token
   end
 
   def rollit
-    roll_service = RollService.new(params[:uid])
-    roll_service.execute(params[:message])
+    roll_service = RollService.new(params[:sessionId])
+    roll_service.execute(params[:result])
     render json: { speech: roll_service.response_message, 
       displayText: roll_service.response_message  }
   end
