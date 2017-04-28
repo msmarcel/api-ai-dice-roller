@@ -7,7 +7,9 @@ class RollService
     )
   end
   def execute(message)
-    @response_message = roll_dice(message[:parameters][:sides],message[:parameters][:count])
+    if message[:action] == "roll"
+        @response_message = roll_dice(message[:parameters][:sides],message[:parameters][:count])
+    end
   end
   def roll_dice(sideses, counts)
     return_string = ""
