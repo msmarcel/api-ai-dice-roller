@@ -2,6 +2,9 @@ class WelcomeController < ApplicationController
 
   # GET /welcome
   def index
+  end
+
+  def rollit
     roll_service = RollService.new(params[:uid])
     roll_service.execute(params[:message])
     render json: { speech: roll_service.response_message, 
