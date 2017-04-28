@@ -11,9 +11,13 @@ class RollService
   end
   def roll_dice(sideses, counts)
     return_string = ""
-    roll_hash = sideses.zip(counts).to_h
-    roll_hash.each do |sides, count|
-        return_string += roll_die(sides,count)
+    if @sideses.respond_to?(:each)
+        roll_hash = sideses.zip(counts).to_h
+        roll_hash.each do |sides, count|
+            return_string += roll_die(sides.to_i,count.to_i)
+        end
+    else
+        return_string += roll_die(sideses.to_i,counts.to_i)
     end
     return return_string
   end
