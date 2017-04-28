@@ -5,6 +5,7 @@ gem 'cowsay'
 gem 'api-ai-ruby'
 
 gem 'dotenv-rails'
+gem 'humanize'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
