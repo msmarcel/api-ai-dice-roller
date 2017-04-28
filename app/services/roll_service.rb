@@ -29,7 +29,7 @@ class RollService
     end
     results = Array.new
     for i in 1..count
-        results << 1 + Random.rand(sides)
+        results << 1 + Random.rand(sides) + ". "
     end
     return_string += results.to_sentence
     return return_string
