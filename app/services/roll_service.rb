@@ -34,7 +34,7 @@ class RollService
     dice_result = @dice_bag.result()
 
     if action == "total"
-      return "The total of all your rolls was #{@dice_result.humanize}. "
+      return "The total of all your rolls was #{dice_result.to_s.humanize}. "
     else
       return roll_to_string(dice_result)
     end
