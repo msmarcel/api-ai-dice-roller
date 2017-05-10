@@ -6,6 +6,7 @@ gem 'api-ai-ruby'
 
 gem 'dotenv-rails'
 gem 'humanize'
+gem 'dicebag'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
@@ -43,4 +44,3 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-

@@ -50,6 +50,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     cowsay (0.3.0)
+    dicebag (3.2.2)
+      parslet (~> 1.4, >= 1.4.0)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.0)
@@ -91,6 +93,7 @@ GEM
     multi_json (1.12.1)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    parslet (1.8.0)
     pg (0.20.0)
     public_suffix (2.0.5)
     puma (3.8.2)
@@ -168,6 +171,7 @@ DEPENDENCIES
   api-ai-ruby
   coffee-rails (~> 4.0.0)
   cowsay
+  dicebag
   dotenv-rails
   humanize
   jbuilder (~> 2.0)

@@ -7,51 +7,48 @@ class RollService
     )
   end
   def execute(message)
-    if message[:action] == "roll"
-        @response_message = roll_dice(message[:parameters][:sides],message[:parameters][:count])
-    elsif message[:action] == "total"
-        @response_message = total_dice(message[:parameters][:sides],message[:parameters][:count],message[:parameters][:mods])
+    if message[:action] == "roll" or message[:action] == "total"
+        @response_message = roll_dice(message[:action],message[:parameters][:sides],message[:parameters][:count],message[:parameters][:mods])
     end
   end
-  def total_dice(sideses, counts, mods)
-    return_string = ""
-    @total = 0
+  def roll_dice(action, sideses, counts, mods)
+    dice_string = ""
+    dice = Array.new
     if sideses.respond_to?(:each)
-        roll_hash = sideses.zip(counts).to_h
-        roll_hash.each do |sides, count|
-            return_string += roll_die(sides.to_i,count.to_i)
+        for i in 0..sideses.count-1
+          this_die = counts[i].to_s + "d" + sideses[i].to_s
+          if mods.respond_to?(:each)
+             this_die += mods[i].to_s
+          end
+          dice << this_die
         end
     else
-        return_string += roll_die(sideses.to_i,counts.to_i)
+        dice << counts.to_s + "d" + sideses.to_s + mods.to_s
     end
-    return "The total of all your rolls was #{@total.humanize}. "
-  end
-  def roll_dice(sideses, counts)
-    return_string = ""
-    @total = 0
-    if sideses.respond_to?(:each)
-        roll_hash = sideses.zip(counts).to_h
-        roll_hash.each do |sides, count|
-            return_string += roll_die(sides.to_i,count.to_i)
-        end
+    if !mods.respond_to?(:each) and !mods.to_s.blank?
+      dice << mods.to_s
+    end
+    dice_string = dice.join("+")
+    #return dice.to_sentence
+    @dice_bag = DiceBag::Roll.new(dice_string)
+    dice_result = @dice_bag.result()
+
+    if action == "total"
+      return "The total of all your rolls was #{@dice_result.humanize}. "
     else
-        return_string += roll_die(sideses.to_i,counts.to_i)
+      return roll_to_string(dice_result)
     end
-    return return_string
   end
-  def roll_die(sides, count)
-    if count > 1
-        return_string = "You rolled #{count.humanize} #{sides.humanize}-sided dice. Your results were "
-    else 
-        return_string = "You rolled a #{sides.humanize}-sided die. Your result was "
+  def roll_to_string(result)
+    return_string = ""
+    result.each do |section|
+      if section.count > 1
+          return_string = "You rolled #{section.count.humanize} #{section.sides.humanize}-sided dice. Your results were "
+      else
+          return_string = "You rolled a #{section.sides.humanize}-sided die. Your result was "
+      end
+      return_string += section.tally().to_sentence + ". "
     end
-    results = Array.new
-    for i in 1..count
-        this_roll = 1 + Random.rand(sides)
-        @total += this_roll
-        results << this_roll
-    end
-    return_string += results.to_sentence + ". "
     return return_string
   end
 end
