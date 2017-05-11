@@ -16,11 +16,20 @@ class RollService
     dice = Array.new
     if sideses.respond_to?(:each)
         for i in 0..sideses.count-1
-          this_die = counts[i].to_s + "d" + sideses[i].to_s
+          if counts.respond_to?(:each)
+            this_die = counts[i].to_s + "d" + sideses[i].to_s
+          else
+            this_die = "1d" + sideses[i].to_s
+          end
           dice << this_die
         end
     else
-        dice << counts.to_s + "d" + sideses.to_s + mods.to_s
+        if !counts.nil?
+          this_die = counts.to_s + "d" + sideses.to_s + mods.to_s
+        else
+          this_die = "1d" + sideses.to_s + mods.to_s
+        end
+        dice << this_die
     end
     dice_string = dice.join("+")
     if mods.respond_to?(:each)
