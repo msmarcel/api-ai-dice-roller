@@ -52,7 +52,7 @@ class RollServiceTest < ActiveSupport::TestCase
 
   test "roll attributes" do
     test_result = @rollservice.execute test_data_roll_attributes
-    expected_result = /You rolled four six-sided dice\. Your results were [1-6], [1-6], [1-6], and [1-6]\. The total of all your rolls was [1-6]+\./
+    expected_result = /You rolled four six-sided dice\. Your results were [1-6], [1-6], [1-6], and [1-6]\. The total of all your rolls was [0-9]+\./
     assert test_result.match(expected_result)
   end
 end
