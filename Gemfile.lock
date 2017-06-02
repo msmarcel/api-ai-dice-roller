@@ -94,7 +94,6 @@ GEM
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     parslet (1.8.0)
-    pg (0.20.0)
     public_suffix (2.0.5)
     puma (3.8.2)
     rack (1.6.5)
@@ -176,7 +175,6 @@ DEPENDENCIES
   humanize
   jbuilder (~> 2.0)
   jquery-rails
-  pg
   puma
   rails (= 4.2.8)
   rails_12factor
@@ -190,4 +188,4 @@ RUBY VERSION
    ruby 2.3.4p301
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
